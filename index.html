@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <meta name="description" content="Scaters Presents: The Raptor Roadshow. The ultimate skateboarding event.">
+    <title>Scaters | The Raptor Roadshow - Official Event Site</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-pink: #ff00cc;
+            --color-cyan: #00ffff;
+            --color-yellow: #ffee00;
+            --color-purple: #512bd4;
+            --color-red-marker: #ff004c;
+            
+            --bg-dark-deep: #0a0a12;
+            --bg-dark-mid: rgba(20, 20, 32, 0.6); 
+            --bg-light-grey: rgba(240, 242, 245, 0.85); 
+            
+            --text-light: #ffffff;
+            --text-muted-light: #b0b0c0;
+            --text-dark: #111111;
+
+            --navbar-height: 90px;
+        }
+
+        html, body {
+            overflow-x: hidden; 
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
+
+        #global-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -9999;
+            background-color: var(--bg-dark-deep);
+            background-image: 
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.07'/%3E%3C/svg%3E"),
+                linear-gradient(rgba(10, 10, 18, 0.4), rgba(20, 20, 32, 0.6)),
+                url('https://res.cloudinary.com/dsohyqk0i/image/upload/v1765787702/Background_gm1cug.jpg');
+            background-size: auto, auto, cover; 
+            background-repeat: repeat, no-repeat, no-repeat;
+            background-position: center center;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: transparent;
+            color: var(--text-light);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .scroll-tracker-container { position: fixed; top: 0; right: 20px; width: 6px; height: 100vh; z-index: 10000; display: flex; justify-content: center; pointer-events: none; }
+        .scroll-track-line { width: 100%; height: 100%; background: rgba(255, 255, 255, 0.1); border-radius: 10px; position: relative; overflow: hidden; }
+        .scroll-track-progress { width: 100%; height: 0%; background: linear-gradient(to bottom, var(--color-cyan), var(--color-pink), var(--color-yellow)); box-shadow: 0 0 15px var(--color-cyan); border-radius: 10px; }
+        #vertical-skater { position: absolute; top: 0; right: -32px; width: 70px; height: auto; transform: rotate(90deg); filter: drop-shadow(-5px 0 10px rgba(0,0,0,0.8)); transition: top 0.1s linear; }
+
+        .support-btn { position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px; background: white; color: var(--color-purple); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; z-index: 10000; box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); transition: all 0.3s ease; text-decoration: none; animation: pulse-ring 2s infinite; }
+        .support-btn:hover { background: var(--color-cyan); color: black; transform: scale(1.1); }
+        @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(0, 255, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0); } }
+
+        h1, h2, h3, h4, h5 { font-family: 'Teko', sans-serif; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; color: var(--text-light); }
+        .text-dark-theme { color: var(--text-dark) !important; }
+        .text-muted-theme { color: var(--text-muted-light) !important; }
+        .text-white-theme { color: var(--text-light) !important; }
+        .text-cyan { color: var(--color-cyan) !important; }
+        .text-pink { color: var(--color-pink) !important; }
+        .text-yellow { color: var(--color-yellow) !important; }
+        .text-purple { color: var(--color-purple) !important; }
+        
+        .gradient-text { background: linear-gradient(45deg, var(--color-purple), var(--color-pink), #ff3c00, var(--color-cyan)); background-size: 300% 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradient-shift 4s ease infinite; display: inline-block; filter: drop-shadow(0 0 10px rgba(255,0,204,0.3));}
+
+        @keyframes gradient-shift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes float-gentle { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        @keyframes board-float-3d { 0% { transform: translateY(0) rotate(-10deg) scale(1); filter: drop-shadow(15px 15px 10px rgba(0,0,0,0.2)); } 50% { transform: translateY(-30px) rotate(-5deg) scale(1.05); filter: drop-shadow(30px 40px 20px rgba(0,0,0,0.5)); } 100% { transform: translateY(0) rotate(-10deg) scale(1); filter: drop-shadow(15px 15px 10px rgba(0,0,0,0.2)); } }
+        @keyframes pulse-glow { 0% { box-shadow: 0 0 0 0 rgba(255, 0, 204, 0.4); } 70% { box-shadow: 0 0 0 20px rgba(255, 0, 204, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 0, 204, 0); } }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes marquee-reverse { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+        @keyframes skater-slide { 0% { transform: translateX(-120vw) rotate(15deg) translateY(0); opacity: 0.15; } 10% { opacity: 0.6; } 90% { opacity: 0.6; } 100% { transform: translateX(120vw) rotate(15deg) translateY(-20px); opacity: 0.15; } }
+        .animate-float { animation: float-gentle 5s ease-in-out infinite; }
+        .animate-pulse { animation: pulse-glow 2s infinite; }
+
+        .navbar { background: rgba(10, 10, 18, 0.85); backdrop-filter: blur(15px); box-shadow: 0 4px 20px rgba(0,0,0,0.3); padding: 1rem 0; min-height: var(--navbar-height); z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .navbar-brand { font-size: 2.5rem; color: var(--text-light) !important; font-weight: 900; }
+        .nav-link { color: var(--text-light) !important; font-size: 1.1rem; font-weight: 700; margin-right: 20px; transition: 0.3s; position: relative; }
+        .nav-link:hover { color: var(--color-cyan) !important; }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 3px; background: linear-gradient(90deg, var(--color-pink), var(--color-cyan)); transition: 0.3s; }
+        .nav-link:hover::after { width: 100%; }
+        .btn-scaters { background: linear-gradient(90deg, var(--color-purple), var(--color-pink)); color: white; border: none; font-weight: 700; border-radius: 50px; padding: 12px 35px; font-family: 'Montserrat', sans-serif; font-size: 1rem; text-transform: uppercase; box-shadow: 0 10px 20px rgba(255, 0, 204, 0.3); transition: all 0.3s; }
+        .btn-scaters:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 20px 40px rgba(255, 0, 204, 0.6); color: white; }
+        .btn-outline-light { border-width: 3px; font-weight: 700; }
+        .btn-outline-light:hover { background: white; color: black; box-shadow: 0 0 25px white; }
+
+        .hero-section { padding-top: var(--navbar-height); min-height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent; z-index: -2; } 
+        .hero-shape { position: absolute; pointer-events: none; z-index: -1; opacity: 0.5; mix-blend-mode: screen; }
+        .shape-1 { top: 15%; left: 5%; width: 300px; height: 300px; background: radial-gradient(circle, var(--color-pink), transparent 70%); animation: float-gentle 6s infinite ease-in-out; }
+        .shape-2 { bottom: 10%; right: 5%; width: 400px; height: 400px; background: radial-gradient(circle, var(--color-purple), transparent 70%); animation: float-gentle 8s infinite ease-in-out reverse; }
+        .hero-floating-board { position: absolute; top: 20%; right: 2%; width: 450px; z-index: 1; animation: board-float-3d 6s ease-in-out infinite; pointer-events: none; object-fit: contain; }
+        
+        .hero-title { font-size: 8rem; line-height: 0.85; font-weight: 900; margin-bottom: 20px; position: relative; z-index: 5; }
+        
+        .hero-text-primary {
+            position: relative;
+            color: white;
+            display: inline-block;
+        }
+        .hero-text-primary::before, .hero-text-primary::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0; left: 0;
+            opacity: 0.8;
+            z-index: -1;
+            mix-blend-mode: screen;
+        }
+        .hero-text-primary::before {
+            color: var(--color-cyan);
+            animation: glitch-vibe 0.1s infinite linear alternate-reverse;
+            left: -3px;
+            filter: blur(1px);
+        }
+        .hero-text-primary::after {
+            color: var(--color-pink);
+            animation: glitch-vibe 0.15s infinite linear alternate;
+            left: 3px;
+            filter: blur(1px);
+        }
+        @keyframes glitch-vibe {
+            0% { transform: translate(0); }
+            20% { transform: translate(-1px, 1px); }
+            40% { transform: translate(-1px, -1px); }
+            60% { transform: translate(1px, 1px); }
+            80% { transform: translate(1px, -1px); }
+            100% { transform: translate(0); }
+        }
+
+        .hero-text-secondary {
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(45deg, var(--color-purple), var(--color-pink), #ff3c00, var(--color-cyan));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-shift 3s ease infinite, hyper-glow 2s ease-in-out infinite alternate;
+        }
+        .hero-text-secondary::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0; top: 0;
+            z-index: 1;
+            background: linear-gradient(to right, transparent, white, transparent);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 50% 100%;
+            background-repeat: no-repeat;
+            opacity: 0.8;
+            animation: energy-sweep 3s ease-in-out infinite;
+            pointer-events: none;
+            filter: drop-shadow(0 0 10px white);
+        }
+        
+        @keyframes energy-sweep {
+            0%, 10% { background-position: -200% 0; opacity: 0; }
+            50% { opacity: 1; }
+            90%, 100% { background-position: 200% 0; opacity: 0; }
+        }
+
+        @keyframes hyper-glow {
+            0% { filter: drop-shadow(0 0 15px var(--color-purple)) drop-shadow(0 0 5px var(--color-cyan)); }
+            100% { filter: drop-shadow(0 0 50px var(--color-pink)) drop-shadow(0 0 20px var(--color-yellow)) brightness(1.2); }
+        }
+
+        .hero-subtitle-badge { font-size: 1.8rem; background: var(--color-yellow); color: black; padding: 5px 25px; display: inline-block; transform: rotate(-2deg); margin-bottom: 30px; font-weight: 900; border: 3px solid black; box-shadow: 5px 5px 0 black; transition: transform 0.3s; }
+        .hero-subtitle-badge:hover { transform: rotate(0deg) scale(1.1); box-shadow: 0 0 25px var(--color-yellow); }
+
+        .bg-yellow { background-color: rgba(255, 238, 0, 0.9); background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 10px, transparent 10px, transparent 20px); border-top: 5px solid black; border-bottom: 5px solid black; color: var(--text-dark); }
+        .bg-yellow h2, .bg-yellow h4 { color: var(--text-dark); }
+        .marquee-container, .marquee-strip { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); }
+        .marquee-container { position: relative; overflow: hidden; transform: rotate(2deg); margin: 30px 0; border-top: 5px solid var(--color-cyan); border-bottom: 5px solid var(--color-pink); padding: 10px 0; box-shadow: 0 10px 50px rgba(0,0,0,0.5); z-index: 2; }
+        .marquee-content { display: inline-block; white-space: nowrap; animation: marquee 20s linear infinite; font-family: 'Teko', sans-serif; font-size: 3.5rem; font-weight: 700; color: white; text-shadow: 0 0 10px var(--color-cyan); position: relative; z-index: 10; }
+        .marquee-board-img { height: 70px; width: auto; object-fit: contain; transform: rotate(-10deg); filter: drop-shadow(0 0 5px var(--color-cyan)); }
+        .skater-silhouette { position: absolute; top: 0; left: 0; height: 100%; opacity: 0.3; animation: skater-slide 12s linear infinite; filter: drop-shadow(0 0 10px var(--color-pink)); object-fit: contain; z-index: 1; pointer-events: none; }
+        .bg-dark-section { background-color: var(--bg-dark-mid); backdrop-filter: blur(10px); position: relative; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .feature-box-dark { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); border-left: 5px solid var(--color-pink); backdrop-filter: blur(10px); transition: 0.3s; margin-bottom: 20px; }
+        .feature-box-dark:hover { transform: translateX(5px); border-left-color: var(--color-cyan); background: rgba(255,255,255,0.07); box-shadow: -10px 0 30px rgba(0,255,255,0.2); }
+        .video-border { border: 5px solid var(--color-cyan); border-radius: 20px; overflow: hidden; box-shadow: 0 0 40px rgba(0,255,255,0.3); }
+
+        .product-nav-tabs .nav-link {
+            color: #ffffff !important; 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 1) !important; 
+            font-weight: 900 !important; 
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            margin-right: 10px;
+            padding: 10px 30px;
+            transition: 0.3s;
+        }
+        .product-nav-tabs .nav-link:hover { border-color: var(--color-pink); color: var(--color-pink) !important; text-shadow: 0 0 10px var(--color-pink) !important; }
+        .product-nav-tabs .nav-link.active { background: var(--color-cyan); color: black !important; text-shadow: none !important; border-color: var(--color-cyan); box-shadow: 0 0 20px var(--color-cyan); }
+        
+        .specs-table { background: rgba(0, 0, 0, 0.6); border-radius: 10px; overflow: hidden; border-collapse: separate; border-spacing: 0; width: 100%; }
+        .specs-table th { background: rgba(0, 255, 255, 0.15); color: var(--color-purple); font-family: 'Teko'; font-size: 1.4rem; letter-spacing: 1px; width: 40%; border-color: rgba(255,255,255,0.2); padding: 12px; }
+        .specs-table td { color: var(--color-purple); font-weight: 700; border-color: rgba(255,255,255,0.2); font-size: 1.1rem; padding: 12px; transition: background 0.1s; }
+        .specs-table tr:hover td { background-color: rgba(255, 255, 255, 0.05); color: var(--color-purple); }
+        .specs-table th, .specs-table td { border-bottom: 1px solid rgba(255,255,255,0.2); }
+        .specs-table tr:last-child th, .specs-table tr:last-child td { border-bottom: none; }
+        .progress { height: 12px; background-color: rgba(255,255,255,0.1); border-radius: 10px; margin-bottom: 25px;}
+        .progress-bar { background: linear-gradient(90deg, var(--color-cyan), var(--color-pink)); box-shadow: 0 0 15px var(--color-cyan); }
+        .carousel-indicators-custom { margin-top: 15px; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+        .carousel-indicators-custom button { width: 80px; height: 50px; border: 2px solid rgba(255,255,255,0.2); border-radius: 5px; background: none; padding: 0; opacity: 0.5; transition: all 0.3s ease; overflow: hidden; cursor: pointer; }
+        .carousel-indicators-custom button.active, .carousel-indicators-custom button:hover { opacity: 1; border-color: var(--color-cyan); box-shadow: 0 0 15px var(--color-cyan); transform: scale(1.1); }
+        .carousel-indicators-custom button img { width: 100%; height: 100%; object-fit: cover; }
+
+        .bg-grey-contrast { background-color: var(--bg-light-grey); backdrop-filter: blur(10px); color: var(--text-dark); position: relative; }
+        .bg-grey-contrast h2, .bg-grey-contrast h4, .bg-grey-contrast h5, .bg-grey-contrast .h3-dark { color: var(--text-dark); }
+        .bg-grey-contrast .text-muted { color: #444 !important; }
+        .info-card-light { background: rgba(255,255,255,0.7); box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-radius: 20px; height: 100%; padding: 1.5rem; transition: 0.3s; color: black; position: relative; overflow: hidden; backdrop-filter: blur(15px); z-index: 1; }
+        .info-card-light::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-image: url('https://res.cloudinary.com/dsohyqk0i/image/upload/v1765787702/Background_gm1cug.jpg'); background-size: cover; background-position: center bottom; -webkit-mask-image: linear-gradient(to top, black 20%, transparent 100%); mask-image: linear-gradient(to top, black 20%, transparent 100%); opacity: 0.8; }
+        .info-card-light h3, .info-card-light h5 { color: black; font-weight: 800; }
+        .info-card-light p { color: #555; }
+        .info-card-light .text-muted.small { text-shadow: 0 0 4px rgba(255, 255, 255, 1), 0 0 2px rgba(255, 255, 255, 1); font-weight: 700 !important; color: #111 !important; }
+
+        .timeline-card { background: rgba(255,255,255,0.9); color: var(--text-dark); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-left: 5px solid transparent; }
+        .timeline-card h2, .timeline-card h4 { color: var(--text-dark); }
+        .timeline-card:hover { transform: translateY(-5px); border-left-color: var(--color-pink); }
+        .map-thumb-wrapper { width: 100%; height: 100px; border-radius: 10px; overflow: hidden; border: 2px solid #ddd; position: relative; transition: all 0.3s ease; }
+        .map-thumb-wrapper:hover { border-color: var(--color-pink); box-shadow: 0 5px 15px rgba(255, 0, 204, 0.3); transform: scale(1.05); }
+        .map-img { width: 100%; height: 100%; object-fit: cover; }
+        .map-overlay-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--color-red-marker); font-size: 2rem; text-shadow: 2px 2px 4px rgba(255,255,255,0.8); opacity: 0.8; }
+        .team-img-wrapper { position: relative; overflow: hidden; border-radius: 20px; border: 3px solid var(--color-pink); box-shadow: 0 0 20px rgba(255,0,204,0.3); transition: 0.3s; aspect-ratio: 1 / 1; }
+        .team-card:hover .team-img-wrapper { border-color: var(--color-cyan); box-shadow: 0 0 30px rgba(255,255,255,0.5); }
+        .team-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; filter: grayscale(100%) contrast(1.2); }
+        .team-card:hover .team-img { transform: scale(1.1); filter: grayscale(0%); }
+        .marquee-wrapper { margin: 50px 0; transform: rotate(2deg); position: relative; z-index: 2; }
+        .marquee-strip.top { border-top: 5px solid var(--color-cyan); border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .marquee-strip.bottom { border-top: none; border-bottom: 5px solid var(--color-pink); background: rgba(10,10,10,0.8); }
+        .marquee-content-reverse { display: inline-block; white-space: nowrap; animation: marquee-reverse 15s linear infinite; }
+        .marquee-board-icon { height: 50px; width: auto; object-fit: contain; margin: 0 20px; filter: drop-shadow(0 0 5px var(--color-cyan)); transform: rotate(-5deg); }
+        .marquee-board-large { height: 90px; width: auto; margin: 0 60px; object-fit: contain; transform: rotate(15deg); filter: drop-shadow(0 0 10px var(--color-pink)); }
+        .double-marquee-wrapper { position: relative; height: 250px; width: 100%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: transparent; z-index: 5; margin-bottom: -70px; }
+        .marquee-strip-crossed { position: absolute; width: 120%; left: -10%; padding: 12px 0; display: flex; align-items: center; box-shadow: 0 5px 25px rgba(0,0,0,0.7); }
+        .strip-yellow { background: var(--color-yellow); color: black; transform: rotate(4deg); z-index: 2; }
+        .strip-pink { background: var(--color-pink); color: white; transform: rotate(-4deg); z-index: 1; }
+        .marquee-text-scroll { display: inline-block; white-space: nowrap; font-family: 'Teko', sans-serif; font-size: 2.5rem; font-weight: 700; text-transform: uppercase; animation: marquee 15s linear infinite; }
+        .marquee-text-scroll-reverse { display: inline-block; white-space: nowrap; font-family: 'Teko', sans-serif; font-size: 2.5rem; font-weight: 700; text-transform: uppercase; animation: marquee-reverse 15s linear infinite; }
+        .accordion-item { border: 1px solid rgba(255,255,255,0.2); margin-bottom: 15px; border-radius: 15px !important; overflow: hidden; background: rgba(0,0,0,0.5); }
+        .accordion-button { font-weight: 700; color: var(--text-light); background-color: rgba(255,255,255,0.05); }
+        .accordion-button:not(.collapsed) { color: var(--color-cyan); background-color: rgba(0, 255, 255, 0.15); box-shadow: none; }
+        .accordion-button::after { filter: invert(1); }
+        .accordion-body { background-color: rgba(0,0,0,0.6); color: #ddd; font-weight: 400; border-top: 1px solid rgba(255,255,255,0.1); }
+        .about-section { padding: 100px 0; background: linear-gradient(to bottom, rgba(10,10,18,0.8), rgba(0,0,0,0.9)); border-top: 5px solid var(--color-cyan); border-bottom: 5px solid var(--color-pink);}
+        
+        .register-section { padding: 100px 0; color: white; background: linear-gradient(135deg, rgba(42, 42, 114, 0.9), rgba(178, 14, 138, 0.9)); position: relative; overflow: hidden; border-top: 5px solid var(--color-yellow); }
+        .pricing-box { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); border-radius: 30px; padding: 40px; text-align: center; backdrop-filter: blur(10px); transition: 0.3s; }
+        .pricing-box:hover { transform: scale(1.05); background: rgba(0,0,0,0.5); border-color: var(--color-cyan); }
+        .pricing-box.featured { background: rgba(255,255,255,0.1); color: white; transform: scale(1.05); border: 4px solid var(--color-yellow); box-shadow: 0 0 50px rgba(255, 238, 0, 0.3); }
+        .pricing-box.featured:hover { transform: scale(1.08); box-shadow: 0 0 70px rgba(255, 238, 0, 0.5); }
+        .pricing-box.featured .text-dark { color: white !important; }
+
+        .testimonial-card { 
+            background: rgba(255,255,255,0.05); 
+            padding: 50px 30px 30px 30px; 
+            border-radius: 20px; 
+            border: 1px solid rgba(255,255,255,0.1); 
+            border-left: 5px solid var(--color-purple); 
+            height: 100%; 
+            backdrop-filter: blur(5px); 
+            position: relative; 
+            overflow: visible !important; 
+            margin-top: 40px; 
+        }
+        .testimonial-text { font-style: italic; font-size: 1.1rem; color: var(--text-silver); }
+        .testimonial-img { 
+            position: absolute; 
+            top: -35px; 
+            right: -20px; 
+            width: 70px; 
+            height: 70px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            border: 3px solid transparent; 
+            z-index: 10; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .img-purple { border-color: var(--color-purple); box-shadow: 0 5px 15px rgba(81, 43, 212, 0.3); }
+        .img-cyan { border-color: var(--color-cyan); box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3); }
+        .img-yellow { border-color: var(--color-yellow); box-shadow: 0 5px 15px rgba(255, 238, 0, 0.3); }
+
+        .previous-events-section { background-color: var(--bg-dark-mid); backdrop-filter: blur(10px); padding: 100px 0; border-top: 1px solid rgba(255,255,255,0.05); position: relative; z-index: 2; }
+        .event-card { background: white; border-radius: 15px; overflow: hidden; height: 100%; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 10px 20px rgba(0,0,0,0.2); display: flex; flex-direction: column; }
+        .event-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2); }
+        .event-img-wrap { width: 100%; aspect-ratio: 3/4; overflow: hidden; } 
+        .event-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .event-card:hover .event-img { transform: scale(1.1); }
+        .event-body { padding: 20px; color: var(--text-dark); flex-grow: 1; display: flex; flex-direction: column; }
+        .event-tag { font-size: 0.85rem; color: #666; margin-bottom: 8px; display: flex; align-items: center; font-weight: 600; }
+        .event-tag .dot { height: 10px; width: 10px; background-color: var(--color-yellow); border-radius: 50%; display: inline-block; margin-right: 8px; }
+        .event-icon-row { color: var(--color-red-marker); font-size: 1.1rem; margin-bottom: 5px; }
+        .event-title { font-family: 'Teko', sans-serif; font-weight: 700; font-size: 1.6rem; line-height: 1.1; margin-bottom: auto; text-transform: uppercase; color: #111; }
+        .event-date { font-size: 0.9rem; color: #888; margin-top: 15px; font-weight: 600; }
+
+        footer { 
+            background: #000 !important; 
+            background-color: var(--bg-dark-deep) !important;
+            padding: 80px 0; 
+            border-top: 1px solid #333; 
+            position: relative; 
+            color: white;
+            z-index: 10;
+        }
+        .social-link { width: 50px; height: 50px; background: rgba(255,255,255,0.1); display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; color: white; margin: 0 8px; font-size: 1.2rem; transition: 0.3s; text-decoration: none; border: 2px solid transparent; }
+        .social-link:hover { 
+            background: white; 
+            color: #000 !important; 
+            box-shadow: 0 0 10px white, 0 0 30px var(--color-pink); 
+            transform: translateY(-5px) scale(1.1); 
+            border-color: white;
+        }
+
+        .modal-content-dark { background-color: #1a1a2e; color: white; border: 1px solid var(--color-cyan); box-shadow: 0 0 30px rgba(0,255,255,0.2); }
+        .modal-header-dark { border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .modal-footer-dark { border-top: 1px solid rgba(255,255,255,0.1); }
+        .form-label { font-weight: 600; color: var(--color-cyan); }
+        .form-control-dark { background-color: rgba(0,0,0,0.5); border: 1px solid #444; color: white; }
+        .form-control-dark:focus { background-color: rgba(0,0,0,0.8); border-color: var(--color-pink); color: white; box-shadow: 0 0 10px rgba(255, 0, 204, 0.3); }
+        
+        .form-control-dark::placeholder {
+            color: #b0b0c0;
+            opacity: 0.7;
+        }
+
+        .section-title { font-family: 'Teko', sans-serif; font-size: 1.5rem; color: var(--color-yellow); border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 5px; margin-bottom: 15px; margin-top: 20px; }
+        .section-title:first-child { margin-top: 0; }
+        .form-check-input:checked { background-color: var(--color-pink); border-color: var(--color-pink); }
+        
+        #faq { position: relative; }
+        .faq-content-wrapper { position: relative; z-index: 5; }
+        .faq-model-col { 
+            position: relative; 
+            z-index: 1; 
+            margin-bottom: -4rem;
+            pointer-events: none; 
+        }
+        .faq-model-img { 
+            max-height: 750px; 
+            width: auto; 
+            object-fit: contain; 
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); 
+        }
+
+        @media (max-width: 991px) {
+            html, body { overflow-x: hidden !important; max-width: 100%; }
+            body { background-attachment: scroll !important; background-size: auto, auto, cover !important; background-position: center top !important; }
+            .hero-title { font-size: 13vw !important; line-height: 1; text-align: center; margin-top: 10px; }
+            .hero-subtitle-badge { font-size: 1.2rem; }
+            .hero-floating-board { display: none !important; }
+            .hero-section { padding-top: 120px; min-height: auto; padding-bottom: 50px; }
+            .product-nav-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+            .product-nav-tabs .nav-link { margin-right: 0; font-size: 0.9rem; padding: 8px 20px; }
+            .marquee-content, .marquee-text-scroll { font-size: 2rem !important; }
+            .scroll-tracker-container { display: none !important; }
+            .timeline-card .row { display: flex; flex-direction: column; text-align: center; }
+            .timeline-card .col-md-3, .timeline-card .col-md-6 { width: 100%; margin-bottom: 15px; }
+            .section-yellow .row.text-center { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+            .section-yellow .col-3 { width: 100%; border-right: none !important; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 10px; }
+            .section-yellow .col-3:last-child { border-bottom: none; }
+            .support-btn { bottom: 20px; left: 20px; width: 50px; height: 50px; font-size: 24px; }
+            .faq-model-col { display: none !important; }
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
+
+    <div id="global-bg"></div>
+
+    <div class="scroll-tracker-container">
+        <div class="scroll-track-line">
+            <div id="trackProgress" class="scroll-track-progress"></div>
+        </div>
+        <img id="vertical-skater" src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765768715/Raptor_ctkwz2.png" alt="Vertical Skater">
+    </div>
+
+    <a href="https://hoatiendat.github.io/ChatbotScatersRaptorRoadshow/" class="support-btn" target="_blank">
+        <i class="fas fa-comment-dots"></i>
+    </a>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">SCATERS<span style="color: var(--color-pink); font-size: 3rem; text-shadow: 0 0 10px var(--color-pink);">.</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="filter: invert(1);"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#raptor">THE BOARD</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#roadshow">TOUR</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#team">TEAM</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+                    <li class="nav-item ms-lg-3"><button class="btn btn-scaters animate-pulse d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#registerModal">REGISTER NOW</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section" id="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-shape shape-1"></div>
+        <div class="hero-shape shape-2"></div>
+        
+        <img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765768715/Raptor_ctkwz2.png" alt="Floating Skateboard" class="hero-floating-board">
+
+        <div class="container hero-content-wrapper">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="mb-4" data-aos="zoom-in" data-aos-delay="100">
+                        <span class="hero-subtitle-badge">UK ROADSHOW 2026</span>
+                    </div>
+                    
+                    <h1 class="hero-title" data-aos="fade-up" data-aos-delay="200">
+                        <span class="hero-text-primary" data-text="UNLEASH THE">UNLEASH THE</span> <br>
+                        <span class="hero-text-secondary" data-text="RAPTOR">RAPTOR</span>
+                    </h1>
+                    
+                    <p class="lead mb-5 fw-bold fs-3 text-silver" data-aos="fade-up" data-aos-delay="300">
+                        Lighter. Faster. Indestructible. <br>
+                        Join the UK's biggest skate event and test ride the future.
+                    </p>
+                    <div class="d-flex justify-content-center gap-3" data-aos="fade-up" data-aos-delay="400">
+                        <a href="#roadshow" class="btn btn-scaters btn-lg fs-5 px-5 d-flex justify-content-center align-items-center">VIEW DATES</a>
+                        <a href="#raptor" class="btn btn-outline-light rounded-pill px-5 py-3 fw-bold fs-5">SEE SPECS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-yellow section-yellow" style="padding: 80px 0;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-5 text-center text-md-start" data-aos="fade-right">
+                    <h4 class="fw-bold mb-0">NEXT STOP:</h4>
+                    <h2 id="next-city" class="display-3 fw-bold" style="font-family: 'Teko'">LOADING...</h2>
+                    <p class="lead fw-bold mb-0"><i class="fas fa-map-marker-alt me-2 animate-float"></i><span id="next-venue">Loading venue...</span></p>
+                </div>
+                <div class="col-md-7" data-aos="zoom-in">
+                    <div class="row text-center">
+                        <div class="col-3 border-end border-dark border-3">
+                            <div id="cd-days" class="display-2 fw-bold" style="font-family: 'Teko'">00</div>
+                            <div class="fw-bold small ls-2">DAYS</div>
+                        </div>
+                        <div class="col-3 border-end border-dark border-3">
+                            <div id="cd-hours" class="display-2 fw-bold" style="font-family: 'Teko'">00</div>
+                            <div class="fw-bold small ls-2">HOURS</div>
+                        </div>
+                        <div class="col-3 border-end border-dark border-3">
+                            <div id="cd-mins" class="display-2 fw-bold" style="font-family: 'Teko'">00</div>
+                            <div class="fw-bold small ls-2">MINS</div>
+                        </div>
+                        <div class="col-3">
+                            <div id="cd-secs" class="display-2 fw-bold" style="font-family: 'Teko'; color: var(--color-purple);">00</div>
+                            <div class="fw-bold small ls-2">SECS</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="marquee-wrapper">
+        <div class="marquee-strip top">
+            <div class="marquee-content d-flex align-items-center">
+                <img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765768715/Raptor_ctkwz2.png" alt="Icon" class="marquee-board-icon">
+                <span>THE RAPTOR IS HERE</span>
+                <img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765768715/Raptor_ctkwz2.png" alt="Icon" class="marquee-board-icon">
+                <span>LIGHTER. FASTER. STRONGER.</span>
+                <img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765768715/Raptor_ctkwz2.png" alt="Icon" class="marquee-board-icon">
+                <span>JOIN THE ROADSHOW</span>
+                <img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765768715/Raptor_ctkwz2.png" alt="Icon" class="marquee-board-icon">
+                <span>SCATERS UK</span>
+                <img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765768715/Raptor_ctkwz2.png" alt="Icon" class="marquee-board-icon">
+                <span>TEST RIDE TODAY</span>
+            </div>
+        </div>
+        <div class="marquee-strip bottom">
+            <div class="marquee-content-reverse d-flex align-items-center">
+                <img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765768715/Raptor_ctkwz2.png" alt="Raptor Board" class="marquee-board-large">
+                <img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765768715/Raptor_ctkwz2.png" alt="Raptor Board" class="marquee-board-large">
+                <img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765768715/Raptor_ctkwz2.png" alt="Raptor Board" class="marquee-board-large">
+                <img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765768715/Raptor_ctkwz2.png" alt="Raptor Board" class="marquee-board-large">
+                <img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765768715/Raptor_ctkwz2.png" alt="Raptor Board" class="marquee-board-large">
+                <img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765768715/Raptor_ctkwz2.png" alt="Raptor Board" class="marquee-board-large">
+                <img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765768715/Raptor_ctkwz2.png" alt="Raptor Board" class="marquee-board-large">
+                <img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765768715/Raptor_ctkwz2.png" alt="Raptor Board" class="marquee-board-large">
+            </div>
+        </div>
+    </div>
+
+    <section id="raptor" class="bg-dark-section" style="padding: 100px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                    <h4 class="text-primary fw-bold mb-3 ls-2">PRODUCT LAUNCH</h4>
+                    <h2 class="display-3 fw-bold mb-4">MEET THE <span class="gradient-text">RAPTOR</span></h2>
+                    
+                    <ul class="nav nav-pills product-nav-tabs mb-4" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation"><button class="nav-link active" id="pills-desc-tab" data-bs-toggle="pill" data-bs-target="#pills-desc" type="button">OVERVIEW</button></li>
+                        <li class="nav-item" role="presentation"><button class="nav-link" id="pills-tech-tab" data-bs-toggle="pill" data-bs-target="#pills-tech" type="button">PERFORMANCE</button></li>
+                        <li class="nav-item" role="presentation"><button class="nav-link" id="pills-specs-tab" data-bs-toggle="pill" data-bs-target="#pills-specs" type="button">SPECS</button></li>
+                    </ul>
+
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-desc" role="tabpanel">
+                            <p class="lead text-muted-theme mb-4">The Raptor is a precision instrument built for the concrete jungle. We've replaced standard maple with a <strong>Carbon-X Core</strong> that delivers 30% more pop and double the durability.</p>
+                            
+                            <div class="feature-box-dark">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-layer-group fa-2x me-3 text-primary animate-float" style="filter: drop-shadow(0 0 10px var(--color-pink));"></i>
+                                    <div><h5 class="fw-bold mb-0 text-white-theme">Hybrid Construction</h5><small class="text-muted-theme">Canadian Maple fused with Carbon Fiber layers.</small></div>
+                                </div>
+                            </div>
+                            <div class="feature-box-dark" style="border-left-color: var(--color-cyan);">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-wind fa-2x me-3 text-info animate-float" style="animation-delay: 1s; filter: drop-shadow(0 0 10px var(--color-cyan));"></i>
+                                    <div><h5 class="fw-bold mb-0 text-white-theme">Aerodynamic Concave</h5><small class="text-muted-theme">Deep concave shape for maximum air control.</small></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="pills-tech" role="tabpanel">
+                            <p class="text-muted-theme mb-4">How the Raptor stacks up against industry standards.</p>
+                            <div class="spec-label text-cyan mb-1 fw-bold">POP / SNAP <span class="float-end">98%</span></div><div class="progress"><div class="progress-bar" style="width: 98%"></div></div>
+                            <div class="spec-label text-pink mb-1 fw-bold">DURABILITY <span class="float-end">95%</span></div><div class="progress"><div class="progress-bar" style="width: 95%; background: linear-gradient(90deg, var(--color-pink), var(--color-purple));"></div></div>
+                            <div class="spec-label text-warning mb-1 fw-bold">LIGHTWEIGHT <span class="float-end">90%</span></div><div class="progress"><div class="progress-bar" style="width: 90%; background: linear-gradient(90deg, var(--color-yellow), var(--color-pink));"></div></div>
+                        </div>
+
+                        <div class="tab-pane fade" id="pills-specs" role="tabpanel">
+                            <table class="table specs-table">
+                                <tbody>
+                                    <tr><th>Deck Material</th><td>7-Ply Maple + Carbon-X</td></tr>
+                                    <tr><th>Widths</th><td>8.0", 8.25", 8.5"</td></tr>
+                                    <tr><th>Trucks</th><td>Scaters™ Hollow Kingpin (Ti)</td></tr>
+                                    <tr><th>Wheels</th><td>52mm / 101A (Street Formula)</td></tr>
+                                    <tr><th>Bearings</th><td>ABEC-9 Ceramics</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6" data-aos="zoom-in-left">
+                    <div class="video-border ratio ratio-16x9 animate-float" style="animation-duration: 8s;">
+                        <div id="raptorCarousel" class="carousel slide w-100 h-100" data-bs-ride="carousel" data-bs-interval="1250"> 
+                            <div class="carousel-inner h-100">
+                                <div class="carousel-item active h-100"><img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765769051/Raptor2_1_qelswi.png" class="d-block w-100 h-100" alt="Raptor View 1" style="object-fit: cover;"></div>
+                                <div class="carousel-item h-100"><img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765792499/1_y7qpps.png" class="d-block w-100 h-100" alt="Raptor View 2" style="object-fit: cover;"></div>
+                                <div class="carousel-item h-100"><img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765792494/3_mlj8wl.png" class="d-block w-100 h-100" alt="Raptor View 3" style="object-fit: cover;"></div>
+                                <div class="carousel-item h-100"><img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765792495/2_ytrlgp.png" class="d-block w-100 h-100" alt="Raptor View 4" style="object-fit: cover;"></div>
+                                <div class="carousel-item h-100"><img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765792493/4_nxhmja.png" class="d-block w-100 h-100" alt="Raptor View 5" style="object-fit: cover;"></div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#raptorCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#raptorCarousel" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>
+                        </div>
+                    </div>
+
+                    <div class="carousel-indicators-custom">
+                        <button type="button" class="active" aria-current="true"><img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765769051/Raptor2_1_qelswi.png" alt="Thumb 1"></button>
+                        <button type="button"><img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765792499/1_y7qpps.png" alt="Thumb 2"></button>
+                        <button type="button"><img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765792494/3_mlj8wl.png" alt="Thumb 3"></button>
+                        <button type="button"><img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765792495/2_ytrlgp.png" alt="Thumb 4"></button>
+                        <button type="button"><img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765792493/4_nxhmja.png" alt="Thumb 5"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="roadshow" class="bg-grey-contrast section-light" style="padding: 100px 0;">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-down">
+                <h2 class="display-3 fw-bold">ROADSHOW SCHEDULE</h2>
+                <p class="lead text-muted">Spring Break Takeover - Come test the Raptor for free!</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-5 mb-5 mb-lg-0" data-aos="fade-right">
+                    <div class="info-card-light">
+                        <h3 class="fw-bold mb-4 text-uppercase border-bottom pb-2 text-dark-theme"><i class="far fa-clock me-2 text-purple"></i>Daily Agenda</h3>
+                        <div class="agenda-item d-flex mb-3 pb-3 border-bottom border-light"><div class="me-3 fw-bold text-primary fs-4" style="font-family: 'Teko'">10:00</div><div><h5 class="fw-bold mb-0">Registration & Warm-up</h5><p class="text-muted small mb-0">Sign waiver, grab your pass.</p></div></div>
+                        <div class="agenda-item d-flex mb-3 pb-3 border-bottom border-light"><div class="me-3 fw-bold text-primary fs-4" style="font-family: 'Teko'">12:00</div><div><h5 class="fw-bold mb-0">Pro Demo: Team Scaters</h5><p class="text-muted small mb-0">Watch Jaxon, Elena, Mike, Kaito & Chloe tear it up.</p></div></div>
+                        <div class="agenda-item d-flex mb-3"><div class="me-3 fw-bold text-primary fs-4" style="font-family: 'Teko'">16:00</div><div><h5 class="fw-bold mb-0">Test Rides & Pizza</h5><p class="text-muted small mb-0">Try the board. Free food for riders.</p></div></div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7" data-aos="fade-left">
+                    <h3 class="fw-bold mb-4 text-center text-dark-theme">TOUR STOPS</h3>
+                    <div class="timeline-card p-4 rounded-4 mb-4 shadow-sm border-start border-5 border-primary" data-aos="fade-up"><div class="row align-items-center"><div class="col-md-3 text-center"><h2 class="fw-bold mb-0 text-dark-theme" style="font-family: 'Teko'; font-size: 3rem;">APR 05</h2></div><div class="col-md-6"><h4 class="fw-bold text-dark-theme">MANCHESTER</h4><p class="text-muted mb-1"><i class="fas fa-map-marker-alt me-2"></i>Projekts MCR Skatepark</p><span class="badge bg-info text-dark">KICKOFF EVENT</span></div><div class="col-md-3 text-end"><a href="https://www.google.com/maps/search/?api=1&query=Projekts+MCR+Skatepark" target="_blank" class="map-link"><div class="map-thumb-wrapper"><img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Map" class="map-img"><i class="fas fa-map-marker-alt map-overlay-icon"></i></div></a></div></div></div>
+                    <div class="timeline-card p-4 rounded-4 mb-4 shadow-sm border-start border-5 border-warning" data-aos="fade-up" data-aos-delay="100"><div class="row align-items-center"><div class="col-md-3 text-center"><h2 class="fw-bold mb-0 text-dark-theme" style="font-family: 'Teko'; font-size: 3rem;">APR 10</h2></div><div class="col-md-6"><h4 class="fw-bold text-dark-theme">LONDON (BIG LAUNCH)</h4><p class="text-muted mb-1"><i class="fas fa-map-marker-alt me-2"></i>Southbank Centre</p><span class="badge bg-warning text-dark">MAIN EVENT - DJ SET</span></div><div class="col-md-3 text-end"><a href="https://www.google.com/maps/search/?api=1&query=Southbank+Centre+Skate" target="_blank" class="map-link"><div class="map-thumb-wrapper"><img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Map" class="map-img"><i class="fas fa-map-marker-alt map-overlay-icon"></i></div></a></div></div></div>
+                    <div class="timeline-card p-4 rounded-4 mb-4 shadow-sm border-start border-5 border-danger" data-aos="fade-up" data-aos-delay="200"><div class="row align-items-center"><div class="col-md-3 text-center"><h2 class="fw-bold mb-0 text-dark-theme" style="font-family: 'Teko'; font-size: 3rem;">APR 12</h2></div><div class="col-md-6"><h4 class="fw-bold text-dark-theme">BRISTOL</h4><p class="text-muted mb-1"><i class="fas fa-map-marker-alt me-2"></i>Dean Lane Skatepark</p><span class="badge bg-danger text-white">WRAP PARTY</span></div><div class="col-md-3 text-end"><a href="https://www.google.com/maps/search/?api=1&query=Dean+Lane+Skatepark" target="_blank" class="map-link"><div class="map-thumb-wrapper"><img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Map" class="map-img"><i class="fas fa-map-marker-alt map-overlay-icon"></i></div></a></div></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="bg-dark-section" style="padding: 100px 0;">
+        <div class="container">
+            <h2 class="text-center mb-5 display-3 fw-bold" data-aos="flip-up">MEET THE PROS</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-4" data-aos="fade-up"><div class="card border-0 bg-transparent team-card"><div class="team-img-wrapper" style="box-shadow: 0 0 20px rgba(81, 43, 212, 0.3); border-color: var(--color-purple);"><img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765776074/JAXON_SMITH_sapnba.png" class="team-img" alt="Pro Jaxon"></div><h3 class="fw-bold mb-0 mt-3">JAXON SMITH</h3><p class="text-primary fw-bold mb-1">Street Style / Regular</p><p class="text-muted-theme small mb-2"><i class="fas fa-map-pin me-1 text-primary"></i> Manchester, UK</p><p class="small text-muted-theme">"The Raptor feels lighter than anything I've skated before. The pop is unreal."</p></div></div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100"><div class="card border-0 bg-transparent team-card"><div class="team-img-wrapper" style="box-shadow: 0 0 20px rgba(0,255,255,0.3); border-color: var(--color-cyan);"><img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765776076/ELENA_R_gdahrq.png" class="team-img" alt="Pro Elena"></div><h3 class="fw-bold mb-0 mt-3">ELENA R.</h3><p class="text-info fw-bold mb-1">Vert Specialist / Goofy</p><p class="text-muted-theme small mb-2"><i class="fas fa-map-pin me-1 text-info"></i> London, UK</p><p class="small text-muted-theme">"Finally a board that handles impact without cracking. Excited for the London launch!"</p></div></div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200"><div class="card border-0 bg-transparent team-card"><div class="team-img-wrapper" style="box-shadow: 0 0 20px rgba(255, 238, 0, 0.3); border-color: var(--color-yellow);"><img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765776080/MIKE_LEE_y9g1ak.png" class="team-img" alt="Pro Mike"></div><h3 class="fw-bold mb-0 mt-3">MIKE LEE</h3><p class="text-warning fw-bold mb-1">Flatground / Regular</p><p class="text-muted-theme small mb-2"><i class="fas fa-map-pin me-1 text-warning"></i> Bristol, UK</p><p class="small text-muted-theme">"Technical tricks require precision. The Raptor's concave gives me exactly that."</p></div></div>
+                 <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300"><div class="card border-0 bg-transparent team-card"><div class="team-img-wrapper" style="box-shadow: 0 0 20px rgba(81, 43, 212, 0.3); border-color: var(--color-purple);"><img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765776079/KAITO_T_gkdf7m.png" class="team-img" alt="Pro Kaito"></div><h3 class="fw-bold mb-0 mt-3">KAITO T.</h3><p class="text-purple fw-bold mb-1">Park / Goofy</p><p class="text-muted-theme small mb-2"><i class="fas fa-map-pin me-1 text-purple"></i> Tokyo / London</p><p class="small text-muted-theme">"The nose blunt capability on this deck is insane. Perfect balance."</p></div></div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="400"><div class="card border-0 bg-transparent team-card"><div class="team-img-wrapper" style="box-shadow: 0 0 20px rgba(255, 0, 204, 0.3); border-color: var(--color-pink);"><img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765776071/CHLOE_D_gpw0in.png" class="team-img" alt="Pro Chloe"></div><h3 class="fw-bold mb-0 mt-3">CHLOE D.</h3><p class="text-pink fw-bold mb-1">Street Tech / Regular</p><p class="text-muted-theme small mb-2"><i class="fas fa-map-pin me-1 text-pink"></i> Brighton, UK</p><p class="small text-muted-theme">"Been waiting for a UK brand to step up like this. The Raptor delivers."</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" style="background: linear-gradient(to bottom, var(--bg-dark-mid), var(--bg-dark-deep)); border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="container">
+            <h4 class="text-center fw-bold mb-5 text-uppercase ls-2 text-muted-theme"><i class="fas fa-bullhorn me-2 text-pink"></i> Community Hype</h4>
+            <div class="row" style="margin-top: 50px;"> <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="100"><div class="testimonial-card"><img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765799970/Review1_nkzfzj.png" alt="Sarah J" class="testimonial-img img-purple"><div class="mb-3 text-warning"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="testimonial-text">"Attended the secret warmup event. The Raptor deck is legit. Best event vibes in years."</p><p class="fw-bold mt-3 mb-0 text-pink">- Sarah J., London</p></div></div>
+                <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="200"><div class="testimonial-card" style="border-left-color: var(--color-cyan);"><img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765799977/Review2_g33ito.png" alt="SkateMag UK" class="testimonial-img img-cyan"><div class="mb-3 text-warning"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="testimonial-text">"Scaters always puts the community first. Can't wait for the Manchester stop."</p><p class="fw-bold mt-3 mb-0 text-cyan">- SkateMag UK</p></div></div>
+                <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="300"><div class="testimonial-card" style="border-left-color: var(--color-yellow);"><img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765799971/Review3_rnrffo.png" alt="Dave" class="testimonial-img img-yellow"><div class="mb-3 text-warning"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="testimonial-text">"Solid construction. I've been riding the prototype for a month and it hasn't lost any pop."</p><p class="fw-bold mt-3 mb-0 text-yellow">- Dave, Local Shop Owner</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                    <h2 class="display-3 fw-bold text-white mb-4">OUR DNA</h2>
+                    <div style="width: 80px; height: 6px; background: linear-gradient(90deg, var(--color-pink), var(--color-cyan)); margin-bottom: 30px; border-radius: 10px;"></div>
+                    <p class="lead text-light">We don't just manufacture boards; we engineer the ride.</p>
+                    <p class="text-muted-theme">Scaters was founded in a Bristol garage with a simple mission: break the mold. While others focused on graphics, we focused on physics and material science. </p>
+                    <p class="text-muted-theme">We believe in supporting local skate shops because they are the heart of the community. That's why you won't find an "Add to Cart" button here. We drive traffic to the people who keep the scene alive.</p>
+                </div>
+                <div class="col-lg-5 offset-lg-1" data-aos="fade-left">
+                    <div class="row g-3">
+                        <div class="col-6"><div class="p-4 border border-secondary rounded-4 h-100 text-center bg-dark-mid" style="border-color: rgba(255,255,255,0.1) !important;"><h3 class="text-cyan fw-bold display-4">10+</h3><p class="small text-muted-theme">Years of Innovation</p></div></div>
+                        <div class="col-6"><div class="p-4 border border-secondary rounded-4 h-100 text-center bg-dark-mid" style="border-color: rgba(255,255,255,0.1) !important;"><h3 class="text-pink fw-bold display-4">50+</h3><p class="small text-muted-theme">Partner Retailers</p></div></div>
+                        <div class="col-12"><div class="p-4 border border-secondary rounded-4 text-center bg-yellow text-dark" style="border: none !important;"><h4 class="fw-bold mb-0 text-dark-theme">100% UK OWNED & OPERATED</h4></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-5 bg-dark-section">
+        <div class="container-fluid px-lg-5"> <div class="row justify-content-center align-items-end"> <div class="col-lg-3 d-none d-lg-block text-center faq-model-col">
+                      <img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765798345/Model_male_xea4j4.png" alt="Male Skater Model" class="img-fluid faq-model-img">
+                </div>
+
+                <div class="col-lg-6 col-12">
+                    <div class="faq-content-wrapper">
+                        <div class="text-center mb-5" data-aos="fade-down"><h2 class="fw-bold display-5">F.A.Q</h2><p class="text-muted-theme">Everything you need to know about the Roadshow.</p></div>
+                        <div class="accordion" id="faqAccordion" data-aos="fade-up">
+                            <div class="accordion-item"><h2 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">Is the event really free?</button></h2><div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion"><div class="accordion-body"><strong>Yes!</strong> Spectating is 100% free. If you want to participate in the Contest or Test Ride the Raptor, you just need to register online to sign the safety waiver.</div></div></div>
+                            <div class="accordion-item"><h2 class="accordion-header" id="headingTwo"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">Do I need to bring my own helmet?</button></h2><div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">We strongly recommend bringing your own safety gear. However, we will have a limited supply of helmets available for loan on a first-come, first-served basis.</div></div></div>
+                            <div class="accordion-item"><h2 class="accordion-header" id="headingThree"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">Where can I buy the Raptor board?</button></h2><div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Scaters products are sold exclusively through our partner network of local skate shops. We do not sell directly online. Check the "Find a Retailer" section.</div></div></div>
+                            <div class="accordion-item"><h2 class="accordion-header" id="headingFour"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">Is there an age limit for test riding?</button></h2><div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">The event is open to all ages. However, riders under the age of 16 must have a parent or legal guardian present to sign the waiver before they can enter the track area.</div></div></div>
+                            <div class="accordion-item"><h2 class="accordion-header" id="headingFive"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">What happens if it rains?</button></h2><div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Skateboarding is a dry weather sport. The Manchester venue is covered, so it will proceed rain or shine. For London and Bristol, we have contingency rain dates scheduled for the following weekend. Follow our socials for live updates.</div></div></div>
+                            <div class="accordion-item"><h2 class="accordion-header" id="headingSix"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix">Will there be exclusive merchandise?</button></h2><div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Absolutely. We will have a pop-up shop at each location selling limited edition Roadshow tees, caps, and sticker packs that won't be available anywhere else.</div></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 d-none d-lg-block text-center faq-model-col">
+                      <img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765798354/Model_female_vto8od.png" alt="Female Skater Model" class="img-fluid faq-model-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="double-marquee-wrapper">
+        <div class="marquee-strip-crossed strip-yellow">
+            <div class="marquee-text-scroll">
+                 DON'T MISS OUT // REGISTER NOW // SCATERS UK // LIMITED SPOTS // DON'T MISS OUT // REGISTER NOW // SCATERS UK // LIMITED SPOTS // DON'T MISS OUT // REGISTER NOW // SCATERS UK // LIMITED SPOTS
+            </div>
+        </div>
+        <div class="marquee-strip-crossed strip-pink">
+            <div class="marquee-text-scroll-reverse">
+                 SECURE YOUR SPOT // JOIN THE HYPE // RIDE THE RAPTOR // SCATERS UK // SECURE YOUR SPOT // JOIN THE HYPE // RIDE THE RAPTOR // SCATERS UK // SECURE YOUR SPOT // JOIN THE HYPE // RIDE THE RAPTOR // SCATERS UK
+            </div>
+        </div>
+    </div>
+
+    <section id="register" class="register-section">
+        <div class="container text-center">
+            <h2 class="display-3 fw-bold mb-5" data-aos="fade-down" style="text-shadow: 0 0 20px rgba(255,0,204,0.5);">SECURE YOUR SPOT</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-5 mb-4" data-aos="zoom-in-right">
+                    <div class="pricing-box">
+                        <h3 class="fw-bold text-white">SPECTATOR</h3>
+                        <div class="display-4 fw-bold my-3 text-white">FREE</div>
+                        <ul class="list-unstyled mb-4 text-light"><li class="mb-2"><i class="fas fa-check me-2 text-cyan"></i> Access to DJ Area</li><li class="mb-2"><i class="fas fa-check me-2 text-cyan"></i> Watch Pro Demos</li><li class="mb-2 text-muted-theme"><i class="fas fa-times me-2"></i> No Track Access</li></ul>
+                        <button class="btn btn-outline-light rounded-pill px-4 w-100">NO TICKET NEEDED</button>
+                    </div>
+                </div>
+                <div class="col-md-5 mb-4" data-aos="zoom-in-left">
+                    <div class="pricing-box featured">
+                        <div class="badge bg-yellow text-dark mb-3 fw-bold animate-pulse">RECOMMENDED</div>
+                        <h3 class="fw-bold text-dark">TEST RIDER</h3>
+                        <div class="display-4 fw-bold my-3 text-dark">FREE</div>
+                        <ul class="list-unstyled mb-4 text-dark"><li class="mb-2"><strong>20 Min Track Time</strong></li><li class="mb-2">Free Sticker Pack</li><li class="mb-2">Contest Entry</li></ul>
+                        <button class="btn btn-scaters w-100 animate-pulse" style="box-shadow: 0 0 20px rgba(0,0,0,0.5);" data-bs-toggle="modal" data-bs-target="#registerModal">REGISTER NOW</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="previous-events" class="previous-events-section">
+        <div class="container">
+            <h2 class="display-3 fw-bold mb-5 text-center" data-aos="fade-up">PREVIOUS EVENTS</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="event-card">
+                        <div class="event-img-wrap">
+                            <img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765794947/poster1_pmqbqv.jpg" class="event-img" alt="Xmas Party">
+                        </div>
+                        <div class="event-body">
+                            <div class="event-tag"><span class="dot"></span> Skateboard Event</div>
+                            <div class="event-icon-row"><i class="fas fa-map-marker-alt"></i></div>
+                            <h5 class="event-title">LONDON - COPELANDS SKATEPARK XMAS PARTY</h5>
+                            <p class="event-date">6 Dec 2025</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="event-card">
+                        <div class="event-img-wrap">
+                            <img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765794947/poster2_swfmoq.jpg" class="event-img" alt="Survival of the Sickest">
+                        </div>
+                        <div class="event-body">
+                            <div class="event-tag"><span class="dot"></span> Junior Event</div>
+                            <div class="event-icon-row"><i class="fas fa-map-marker-alt"></i></div>
+                            <h5 class="event-title">TRURO - SURVIVAL OF THE SICKEST</h5>
+                            <p class="event-date">29 Nov 2025</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="event-card">
+                        <div class="event-img-wrap">
+                            <img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765794947/poster3_izp58p.jpg" class="event-img" alt="Mini Ramp Jam">
+                        </div>
+                        <div class="event-body">
+                            <div class="event-tag"><span class="dot"></span> Jam</div>
+                            <div class="event-icon-row"><i class="fas fa-map-marker-alt"></i></div>
+                            <h5 class="event-title">SKEGNESS - BEN'S MINI RAMP JAM</h5>
+                            <p class="event-date">22 Nov 2025</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="event-card">
+                        <div class="event-img-wrap">
+                            <img src="https://res.cloudinary.com/dsohyqk0i/image/upload/v1765794950/poster4_d04j9h.jpg" class="event-img" alt="Skatepal Double Bill">
+                        </div>
+                        <div class="event-body">
+                            <div class="event-tag"><span class="dot"></span> Community Event</div>
+                            <div class="event-icon-row"><i class="fas fa-map-marker-alt"></i></div>
+                            <h5 class="event-title">LONDON - SKATEPAL DOUBLE BILL</h5>
+                            <p class="event-date">19 Nov 2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h2 style="font-family: 'Teko'; color: var(--color-pink); text-shadow: 0 0 10px var(--color-pink);">SCATERS.</h2>
+                    <p class="text-muted-theme">Building the legacy of UK skateboarding since 2015. We don't sell direct; we support your local shop.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold text-cyan mb-3">QUICK LINKS</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#raptor" class="text-muted-theme text-decoration-none hover-cyan">The Raptor Specs</a></li>
+                        <li class="mb-2"><a href="#about" class="text-muted-theme text-decoration-none hover-cyan">About Us</a></li>
+                        <li class="mb-2"><a href="#faq" class="text-muted-theme text-decoration-none hover-cyan">FAQ</a></li>
+                        <li class="mb-2"><a href="https://www.google.com/maps/search/skate+shops+united+kingdom" target="_blank" class="text-muted-theme text-decoration-none hover-cyan">Find a Retailer</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <h5 class="fw-bold text-pink mb-3">FOLLOW THE HYPE</h5>
+                    <a href="https://www.instagram.com" target="_blank" class="text-white fs-4 me-3 social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com" target="_blank" class="text-white fs-4 me-3 social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.tiktok.com" target="_blank" class="text-white fs-4 social-link"><i class="fab fa-tiktok"></i></a>
+                    <p class="text-muted-theme small mt-4">© 2025 Scaters Ltd. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content modal-content-dark">
+                <div class="modal-header modal-header-dark">
+                    <h5 class="modal-title fw-bold text-cyan" id="registerModalLabel" style="font-family: 'Teko'; font-size: 2rem;">RAPTOR ROADSHOW REGISTRATION</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="registrationForm" onsubmit="handleRegistrationSubmit(event)">
+                        <style>.form-control-dark::placeholder { color: #b0b0c0; opacity: 0.7; }</style>
+
+                        <div class="section-title">SECTION 1: RIDER DETAILS</div>
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">1. Full Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-control-dark" id="fullName" name="fullName" placeholder="e.g. John Doe" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="emailAddr" class="form-label">2. Email Address <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control form-control-dark" id="emailAddr" name="emailAddr" placeholder="name@example.com" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="phoneNum" class="form-label">3. Phone Number <span class="text-danger">*</span></label>
+                                <input type="tel" class="form-control form-control-dark" id="phoneNum" name="phoneNum" placeholder="0901234567" pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number" required>
+                            </div>
+                        </div>
+
+                        <div class="section-title">SECTION 2: SELECT YOUR STOP <span class="text-danger">*</span></div>
+                        <div class="mb-3">
+                            <label class="form-label mb-2">4. Which Roadshow event are you attending?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="eventLocation" id="locManchester" value="Manchester" required>
+                                <label class="form-check-label text-light" for="locManchester">Apr 05: Manchester - Projekts MCR Skatepark (Kickoff)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="eventLocation" id="locLondon" value="London" required>
+                                <label class="form-check-label text-light" for="locLondon">Apr 10: London - Southbank Centre (Big Launch)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="eventLocation" id="locBristol" value="Bristol" required>
+                                <label class="form-check-label text-light" for="locBristol">Apr 12: Bristol - Dean Lane Skatepark (Wrap Party)</label>
+                            </div>
+                        </div>
+
+                        <div class="section-title">SECTION 3: PARTICIPATION TYPE</div>
+                        <div class="mb-3">
+                            <label class="form-label mb-2">5. Registration Type</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="regType" id="regTypeTest" value="TestRider" checked onchange="toggleSafetySection()">
+                                <label class="form-check-label text-light" for="regTypeTest"><strong>Test Rider</strong> (20 Min Track Time + Sticker Pack + Contest Entry)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="regType" id="regTypeSpec" value="Spectator" onchange="toggleSafetySection()">
+                                <label class="form-check-label text-light" for="regTypeSpec"><strong>Spectator Only</strong> (Watch Demos & DJ Set)</label>
+                            </div>
+                        </div>
+
+                        <div id="safetySection">
+                            <div class="section-title text-pink">SECTION 4: SAFETY & WAIVER</div>
+                            <div class="mb-3">
+                                <label class="form-label mb-2">6. Age Verification <span class="text-danger">*</span></label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="ageVerif" id="age16Plus" value="16+" onchange="toggleParentInfo()" required>
+                                    <label class="form-check-label text-light" for="age16Plus">16 or older</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="ageVerif" id="ageUnder16" value="Under16" onchange="toggleParentInfo()" required>
+                                    <label class="form-check-label text-light" for="ageUnder16">Under 16 (Parent/Guardian must be present to sign waiver)</label>
+                                </div>
+                            </div>
+                            <div class="mb-3" id="parentInfoField" style="display:none;">
+                                <label for="parentName" class="form-label">7. Parent/Guardian Name & Contact</label>
+                                <input type="text" class="form-control form-control-dark" id="parentName" name="parentName">
+                                <div class="form-text text-muted-theme">Required if you selected "Under 16" above.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">8. Safety Gear Acknowledgement <span class="text-danger">*</span></label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="safetyGear" required>
+                                    <label class="form-check-label text-light" for="safetyGear">I understand that bringing my own helmet is highly recommended. Loaner helmets at the event are limited and subject to availability.</label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">9. Liability Waiver <span class="text-danger">*</span></label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="liabilityWaiver" required>
+                                    <label class="form-check-label text-light" for="liabilityWaiver">I agree to the Scaters Event Terms & Conditions and release the organizers from liability for any injuries sustained during the test ride.</label>
+                                </div>
+                            </div>
+                             <div class="mb-3">
+                                <label for="skillLevel" class="form-label">10. Skateboarding Skill Level (Optional)</label>
+                                <select class="form-select form-control-dark" id="skillLevel" name="skillLevel">
+                                    <option selected value="">Choose...</option>
+                                    <option value="Beginner">Beginner (Just starting)</option>
+                                    <option value="Intermediate">Intermediate (Can drop in / basic tricks)</option>
+                                    <option value="Advanced">Advanced (Street/Vert proficient)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer border-0 px-0 pb-0 mt-4">
+                            <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" id="submitBtn" class="btn btn-scaters">SUBMIT REGISTRATION</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 100, duration: 800, easing: 'ease-out-cubic' });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const tourStops = [
+                { city: "MANCHESTER", venue: "Projekts MCR Skatepark", date: "2026-04-05T10:00:00+01:00" },
+                { city: "LONDON", venue: "Southbank Centre", date: "2026-04-10T10:00:00+01:00" },
+                { city: "BRISTOL", venue: "Dean Lane Skatepark", date: "2026-04-12T11:00:00+01:00" }
+            ];
+            const cityEl = document.getElementById('next-city'), venueEl = document.getElementById('next-venue');
+            const daysEl = document.getElementById('cd-days'), hoursEl = document.getElementById('cd-hours'), minsEl = document.getElementById('cd-mins'), secsEl = document.getElementById('cd-secs');
+
+            function updateCountdown() {
+                const now = new Date().getTime();
+                let nextStop = tourStops.find(stop => new Date(stop.date).getTime() > now);
+                if (!nextStop) { cityEl.innerText = "TOUR ENDED"; venueEl.innerText = "See you next year!"; daysEl.innerText = "00"; hoursEl.innerText = "00"; minsEl.innerText = "00"; secsEl.innerText = "00"; return; }
+                cityEl.innerText = nextStop.city; venueEl.innerText = nextStop.venue;
+                const distance = new Date(nextStop.date).getTime() - now;
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                daysEl.innerText = days < 10 ? '0' + days : days; hoursEl.innerText = hours < 10 ? '0' + hours : hours; minsEl.innerText = minutes < 10 ? '0' + minutes : minutes; secsEl.innerText = seconds < 10 ? '0' + seconds : seconds;
+            }
+            updateCountdown(); setInterval(updateCountdown, 1000); 
+        });
+
+        document.addEventListener('scroll', () => {
+            const skater = document.getElementById('vertical-skater');
+            const trackProgress = document.getElementById('trackProgress');
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight);
+            const clampedPercent = Math.min(Math.max(scrollPercent, 0), 1);
+            const skaterPos = clampedPercent * (window.innerHeight - 80); 
+            skater.style.top = skaterPos + 'px';
+            trackProgress.style.height = (clampedPercent * 100) + '%';
+        });
+
+        const myCarousel = document.getElementById('raptorCarousel');
+        const thumbBtns = document.querySelectorAll('.carousel-indicators-custom button');
+        myCarousel.addEventListener('slide.bs.carousel', event => {
+            const index = event.to;
+            thumbBtns.forEach(btn => { btn.classList.remove('active'); btn.style.opacity = '0.5'; });
+            const activeBtn = thumbBtns[index];
+            if (activeBtn) { activeBtn.classList.add('active'); activeBtn.style.opacity = '1'; }
+        });
+        thumbBtns.forEach((btn, index) => { btn.addEventListener('click', () => { const carousel = bootstrap.Carousel.getOrCreateInstance(myCarousel); carousel.to(index); }); });
+
+        function toggleSafetySection() {
+            const isTestRider = document.getElementById('regTypeTest').checked;
+            const safetySection = document.getElementById('safetySection');
+            const safetyInputs = safetySection.querySelectorAll('input, select');
+            if (isTestRider) { 
+                safetySection.style.display = 'block'; 
+                document.getElementById('safetyGear').required = true; 
+                document.getElementById('liabilityWaiver').required = true; 
+                document.getElementById('age16Plus').required = true;
+                document.getElementById('ageUnder16').required = true;
+            } 
+            else { 
+                safetySection.style.display = 'none'; 
+                safetyInputs.forEach(input => input.required = false); 
+            }
+        }
+        function toggleParentInfo() {
+            const isUnder16 = document.getElementById('ageUnder16').checked;
+            const parentField = document.getElementById('parentInfoField');
+            const parentInput = document.getElementById('parentName');
+            if (isUnder16) { parentField.style.display = 'block'; parentInput.required = true; } else { parentField.style.display = 'none'; parentInput.required = false; }
+        }
+
+        function handleRegistrationSubmit(event) {
+            event.preventDefault();
+            
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwjeahB8Z5e0wSEHO1VQjbcj0FZ0ohkEYUQmfhaRTUB2ltNWQUX4z1dcXIqPocKWRuy/exec';
+            
+            const form = document.forms['registrationForm'];
+            const submitBtn = document.getElementById('submitBtn');
+            const originalBtnText = submitBtn.innerText;
+
+            submitBtn.innerText = "SENDING...";
+            submitBtn.disabled = true;
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    const name = document.getElementById('fullName').value;
+                    alert(`🎉 AWESOME, ${name.toUpperCase()}!\n\nYou have successfully registered for The Raptor Roadshow.\nCheck your email for your ticket QR code.`);
+                    
+                    const modalElement = document.getElementById('registerModal');
+                    const modal = bootstrap.Modal.getInstance(modalElement);
+                    modal.hide();
+
+                    form.reset();
+                    submitBtn.innerText = originalBtnText;
+                    submitBtn.disabled = false;
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert('Error submitting registration. Please try again.');
+                    submitBtn.innerText = originalBtnText;
+                    submitBtn.disabled = false;
+                });
+        }
+    </script>
+</body>
+</html>
