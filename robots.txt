@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://scatersraptorroadshow2026.pages.dev/sitemap.xml
+Sitemap: https://scaters.uk/sitemap.xml
