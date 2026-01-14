@@ -32,14 +32,17 @@
     <meta property="og:title" content="Scaters | The Raptor Roadshow - UK Tour 2026">
     <meta property="og:description" content="Join the UK's biggest skate event. Test ride the new Raptor skateboard, free entry, pro demos, and exclusive merch.">
     <meta property="og:image" content="https://res.cloudinary.com/dsohyqk0i/image/upload/f_auto,q_auto,w_1600,dpr_auto/v1765787702/Background_gm1cug.jpg">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"></noscript>
 <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?display=swap&family=Teko:wght@400;600;700&family=Montserrat:wght@400;500;600;700&display=optional"
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
       rel="stylesheet">
         <link rel="preload" as="image" href="https://res.cloudinary.com/dsohyqk0i/image/upload/f_auto,q_60,w_900,dpr_auto/v1768207323/Raptor_eqxqq7.png" fetchpriority="high">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"></noscript>
 
     <style>:root{
   --color-pink:#ff00cc;--color-cyan:#00ffff;--color-yellow:#ffee00;--color-purple:#512bd4;
@@ -50,10 +53,9 @@ html,body{overflow-x:hidden;width:100%;margin:0;padding:0}
 body{font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:transparent;color:var(--text-light);font-weight:500;position:relative}
 #global-bg{position:fixed;inset:0;z-index:-9999;background-color:var(--bg-dark-deep);
   background-image:
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.07'/%3E%3C/svg%3E"),
     linear-gradient(rgba(10,10,18,.4),rgba(20,20,32,.6)),
     url('https://res.cloudinary.com/dsohyqk0i/image/upload/f_auto,q_auto:low,w_1600/v1765787702/Background_gm1cug.jpg');
-  background-size:auto,auto,cover;background-repeat:repeat,no-repeat,no-repeat;background-position:center center;
+  background-size:auto,cover;background-repeat:no-repeat,no-repeat;background-position:center center;
 }
 h1,h2,h3,h4,h5{font-family:'Teko',system-ui,sans-serif;text-transform:uppercase;font-weight:700;letter-spacing:1px;color:var(--text-light)}
 .navbar{background:rgba(10,10,18,.85);backdrop-filter:blur(15px);padding:1rem 0;min-height:var(--navbar-height);z-index:1000;border-bottom:1px solid rgba(255,255,255,.1)}
@@ -100,22 +102,12 @@ h1,h2,h3,h4,h5{font-family:'Teko',system-ui,sans-serif;text-transform:uppercase;
         
         ::-webkit-scrollbar { width: 0px; background: transparent; }
 
-        #global-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: -9999;
-            background-color: var(--bg-dark-deep);
-            background-image: 
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.07'/%3E%3C/svg%3E"),
-                linear-gradient(rgba(10, 10, 18, 0.4), rgba(20, 20, 32, 0.6)),
-                var(--bg-photo);
-            background-size: auto, auto, cover; 
-            background-repeat: repeat, no-repeat, no-repeat;
-            background-position: center center;
-        }
+        #global-bg{position:fixed;inset:0;z-index:-9999;background-color:var(--bg-dark-deep);
+  background-image:
+    linear-gradient(rgba(10,10,18,.4),rgba(20,20,32,.6)),
+    url('https://res.cloudinary.com/dsohyqk0i/image/upload/f_auto,q_auto:low,w_1600/v1765787702/Background_gm1cug.jpg');
+  background-size:auto,cover;background-repeat:no-repeat,no-repeat;background-position:center center;
+}
 
         body {
             font-family: 'Montserrat', sans-serif;
@@ -476,22 +468,12 @@ h1,h2,h3,h4,h5{font-family:'Teko',system-ui,sans-serif;text-transform:uppercase;
         
         ::-webkit-scrollbar { width: 0px; background: transparent; }
 
-        #global-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: -9999;
-            background-color: var(--bg-dark-deep);
-            background-image: 
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.07'/%3E%3C/svg%3E"),
-                linear-gradient(rgba(10, 10, 18, 0.4), rgba(20, 20, 32, 0.6)),
-                var(--bg-photo);
-            background-size: auto, auto, cover; 
-            background-repeat: repeat, no-repeat, no-repeat;
-            background-position: center center;
-        }
+        #global-bg{position:fixed;inset:0;z-index:-9999;background-color:var(--bg-dark-deep);
+  background-image:
+    linear-gradient(rgba(10,10,18,.4),rgba(20,20,32,.6)),
+    url('https://res.cloudinary.com/dsohyqk0i/image/upload/f_auto,q_auto:low,w_1600/v1765787702/Background_gm1cug.jpg');
+  background-size:auto,cover;background-repeat:no-repeat,no-repeat;background-position:center center;
+}
 
         body {
             font-family: 'Montserrat', sans-serif;
@@ -899,7 +881,7 @@ h1,h2,h3,h4,h5{font-family:'Teko',system-ui,sans-serif;text-transform:uppercase;
         <div class="scroll-track-line">
             <div id="trackProgress" class="scroll-track-progress"></div>
         </div>
-        <img id="vertical-skater" src="https://res.cloudinary.com/dsohyqk0i/image/upload/f_auto,q_60,w_900,dpr_auto/v1768207323/Raptor_eqxqq7.png" alt="Vertical Skater" width="70" height="70">
+        <img id="vertical-skater" src="https://res.cloudinary.com/dsohyqk0i/image/upload/f_auto,q_60,w_900,dpr_auto/v1768207323/Raptor_eqxqq7.png" alt="Vertical Skater" width="70" height="70" width="70" height="70">
     </div>
 
     <a href="https://chatbotscatersraptorroadshow2026.pages.dev/" class="support-btn" target="_blank" rel="noopener noreferrer" aria-label="Open support chat" title="Open support chat">
@@ -931,7 +913,7 @@ h1,h2,h3,h4,h5{font-family:'Teko',system-ui,sans-serif;text-transform:uppercase;
      alt="Scaters Raptor Carbon-X Skateboard Floating 3D Model"
      class="hero-floating-board"
      fetchpriority="high"
-     decoding="async" width="900" height="350">
+     decoding="async" width="900" height="350" width="450" height="450">
 
         <div class="container hero-content-wrapper">
             <div class="row justify-content-center">
@@ -1430,133 +1412,208 @@ h1,h2,h3,h4,h5{font-family:'Teko',system-ui,sans-serif;text-transform:uppercase;
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            if (window.AOS) {
-                AOS.init({ once: true, offset: 100, duration: 800, easing: 'ease-out-cubic' });
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="module">
+        const onIdle = (cb) => ('requestIdleCallback' in window)
+            ? requestIdleCallback(cb, { timeout: 1500 })
+            : setTimeout(cb, 1);
 
-        // Defer heavy background image to improve LCP/Speed Index (prevents early fetch).
-        const setBgPhoto = () => {
-            document.documentElement.style.setProperty('--bg-photo', "url('https://res.cloudinary.com/dsohyqk0i/image/upload/f_auto,q_auto,w_1600/v1765787702/Background_gm1cug.jpg')");
+        const initAOS = () => {
+            if (window.AOS) AOS.init({ once: true, offset: 100, duration: 800, easing: 'ease-out-cubic' });
         };
-        if ('requestIdleCallback' in window) {
-            requestIdleCallback(setBgPhoto, { timeout: 2000 });
-        } else {
-            window.addEventListener('load', setBgPhoto, { once: true });
-        }
 
-            }
-        });
+        window.addEventListener('load', () => { onIdle(initAOS); }, { once: true });
 
-        document.addEventListener('DOMContentLoaded', () => {
+        // --- Countdown (above-the-fold) ---
+        function initCountdown() {
             const tourStops = [
                 { city: "MANCHESTER", venue: "Projekts MCR Skatepark", date: "2026-04-05T10:00:00+01:00" },
                 { city: "LONDON", venue: "Southbank Centre", date: "2026-04-10T10:00:00+01:00" },
                 { city: "BRISTOL", venue: "Dean Lane Skatepark", date: "2026-04-12T11:00:00+01:00" }
             ];
-            const cityEl = document.getElementById('next-city'), venueEl = document.getElementById('next-venue');
-            const daysEl = document.getElementById('cd-days'), hoursEl = document.getElementById('cd-hours'), minsEl = document.getElementById('cd-mins'), secsEl = document.getElementById('cd-secs');
 
-            function updateCountdown() {
-                const now = new Date().getTime();
-                let nextStop = tourStops.find(stop => new Date(stop.date).getTime() > now);
-                if (!nextStop) { cityEl.innerText = "TOUR ENDED"; venueEl.innerText = "See you next year!"; daysEl.innerText = "00"; hoursEl.innerText = "00"; minsEl.innerText = "00"; secsEl.innerText = "00"; return; }
-                cityEl.innerText = nextStop.city; venueEl.innerText = nextStop.venue;
+            const cityEl = document.getElementById('next-city');
+            const venueEl = document.getElementById('next-venue');
+            const daysEl = document.getElementById('cd-days');
+            const hoursEl = document.getElementById('cd-hours');
+            const minsEl = document.getElementById('cd-mins');
+            const secsEl = document.getElementById('cd-secs');
+
+            if (!cityEl || !venueEl || !daysEl || !hoursEl || !minsEl || !secsEl) return;
+
+            const updateCountdown = () => {
+                const now = Date.now();
+                const nextStop = tourStops.find(stop => new Date(stop.date).getTime() > now);
+
+                if (!nextStop) {
+                    cityEl.textContent = "TOUR ENDED";
+                    venueEl.textContent = "See you next year!";
+                    daysEl.textContent = hoursEl.textContent = minsEl.textContent = secsEl.textContent = "00";
+                    return;
+                }
+
+                cityEl.textContent = nextStop.city;
+                venueEl.textContent = nextStop.venue;
+
                 const distance = new Date(nextStop.date).getTime() - now;
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                daysEl.innerText = days < 10 ? '0' + days : days; hoursEl.innerText = hours < 10 ? '0' + hours : hours; minsEl.innerText = minutes < 10 ? '0' + minutes : minutes; secsEl.innerText = seconds < 10 ? '0' + seconds : seconds;
-            }
-            updateCountdown(); setInterval(updateCountdown, 1000); 
-        });
 
-        let scrollTicking = false;
-        document.addEventListener('scroll', () => {
-            if (scrollTicking) return;
-            scrollTicking = true;
-            requestAnimationFrame(() => {
-                const skater = document.getElementById('vertical-skater');
-                const trackProgress = document.getElementById('trackProgress');
-                const scrollTop = window.scrollY || document.documentElement.scrollTop;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) : 0;
-                const clampedPercent = Math.min(Math.max(scrollPercent, 0), 1);
-                const skaterPos = clampedPercent * (window.innerHeight - 80);
-                if (skater) skater.style.top = skaterPos + 'px';
-                if (trackProgress) trackProgress.style.height = (clampedPercent * 100) + '%';
-                scrollTicking = false;
+                daysEl.textContent = days < 10 ? '0' + days : String(days);
+                hoursEl.textContent = hours < 10 ? '0' + hours : String(hours);
+                minsEl.textContent = minutes < 10 ? '0' + minutes : String(minutes);
+                secsEl.textContent = seconds < 10 ? '0' + seconds : String(seconds);
+            };
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+
+        // --- Scroll tracker (throttled to avoid forced reflow) ---
+        function initScrollTracker() {
+            const skater = document.getElementById('vertical-skater');
+            const trackProgress = document.getElementById('trackProgress');
+            if (!skater || !trackProgress) return;
+
+            let docHeight = 1;
+            const recalc = () => {
+                docHeight = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+            };
+            recalc();
+
+            let ticking = false;
+            const update = () => {
+                const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+                const scrollPercent = scrollTop / docHeight;
+                const clamped = Math.min(Math.max(scrollPercent, 0), 1);
+                skater.style.top = (clamped * (window.innerHeight - 80)) + 'px';
+                trackProgress.style.height = (clamped * 100) + '%';
+            };
+
+            window.addEventListener('resize', () => { recalc(); update(); }, { passive: true });
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    ticking = true;
+                    requestAnimationFrame(() => { update(); ticking = false; });
+                }
+            }, { passive: true });
+
+            update();
+        }
+
+        // --- Carousel thumbnails (non-critical) ---
+        function initCarouselThumbs() {
+            const myCarousel = document.getElementById('raptorCarousel');
+            const thumbBtns = document.querySelectorAll('.carousel-indicators-custom button');
+            if (!myCarousel || !thumbBtns.length || !window.bootstrap) return;
+
+            myCarousel.addEventListener('slide.bs.carousel', (event) => {
+                const index = event.to;
+                thumbBtns.forEach(btn => { btn.classList.remove('active'); btn.style.opacity = '0.5'; });
+                const activeBtn = thumbBtns[index];
+                if (activeBtn) { activeBtn.classList.add('active'); activeBtn.style.opacity = '1'; }
             });
-        }, { passive: true });
 
-        const myCarousel = document.getElementById('raptorCarousel');
-        const thumbBtns = document.querySelectorAll('.carousel-indicators-custom button');
-        myCarousel.addEventListener('slide.bs.carousel', event => {
-            const index = event.to;
-            thumbBtns.forEach(btn => { btn.classList.remove('active'); btn.style.opacity = '0.5'; });
-            const activeBtn = thumbBtns[index];
-            if (activeBtn) { activeBtn.classList.add('active'); activeBtn.style.opacity = '1'; }
-        });
-        thumbBtns.forEach((btn, index) => { btn.addEventListener('click', () => { const carousel = bootstrap.Carousel.getOrCreateInstance(myCarousel); carousel.to(index); }); });
+            thumbBtns.forEach((btn, index) => {
+                btn.addEventListener('click', () => {
+                    const carousel = bootstrap.Carousel.getOrCreateInstance(myCarousel);
+                    carousel.to(index);
+                });
+            });
+        }
 
+        // --- Form logic (must stay global for inline handlers) ---
         function toggleSafetySection() {
-            const isTestRider = document.getElementById('regTypeTest').checked;
+            const isTestRider = document.getElementById('regTypeTest')?.checked;
             const safetySection = document.getElementById('safetySection');
+            if (!safetySection) return;
+
             const safetyInputs = safetySection.querySelectorAll('input, select');
-            if (isTestRider) { 
-                safetySection.style.display = 'block'; 
-                document.getElementById('safetyGear').required = true; 
-                document.getElementById('liabilityWaiver').required = true; 
-                document.getElementById('age16Plus').required = true;
-                document.getElementById('ageUnder16').required = true;
-            } 
-            else { 
-                safetySection.style.display = 'none'; 
-                safetyInputs.forEach(input => input.required = false); 
+
+            if (isTestRider) {
+                safetySection.style.display = 'block';
+                const safetyGear = document.getElementById('safetyGear');
+                const liabilityWaiver = document.getElementById('liabilityWaiver');
+                const age16Plus = document.getElementById('age16Plus');
+                const ageUnder16 = document.getElementById('ageUnder16');
+                if (safetyGear) safetyGear.required = true;
+                if (liabilityWaiver) liabilityWaiver.required = true;
+                if (age16Plus) age16Plus.required = true;
+                if (ageUnder16) ageUnder16.required = true;
+            } else {
+                safetySection.style.display = 'none';
+                safetyInputs.forEach(input => { input.required = false; });
             }
         }
+
         function toggleParentInfo() {
-            const isUnder16 = document.getElementById('ageUnder16').checked;
+            const isUnder16 = document.getElementById('ageUnder16')?.checked;
             const parentField = document.getElementById('parentInfoField');
             const parentInput = document.getElementById('parentName');
-            if (isUnder16) { parentField.style.display = 'block'; parentInput.required = true; } else { parentField.style.display = 'none'; parentInput.required = false; }
+            if (!parentField || !parentInput) return;
+
+            if (isUnder16) {
+                parentField.style.display = 'block';
+                parentInput.required = true;
+            } else {
+                parentField.style.display = 'none';
+                parentInput.required = false;
+            }
         }
 
         function handleRegistrationSubmit(event) {
             event.preventDefault();
-            
+
             const scriptURL = 'https://script.google.com/macros/s/AKfycbydYr0FFwf0xQf3EoNiKxHuUouDcxZWdp3mRmhbywz7dZmvrVsyUy2wJdWB8qH1ONRb/exec';
-            
             const form = document.forms['registrationForm'];
             const submitBtn = document.getElementById('submitBtn');
-            const originalBtnText = submitBtn.innerText;
+            if (!form || !submitBtn) return;
 
-            submitBtn.innerText = "SENDING...";
+            const originalBtnText = submitBtn.textContent || "SUBMIT REGISTRATION";
+            submitBtn.textContent = "SENDING...";
             submitBtn.disabled = true;
 
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => {
-                    const name = document.getElementById('fullName').value;
-                    alert(`🎉 AWESOME, ${name.toUpperCase()}!\n\nYou have successfully registered for The Scaters Raptor Roadshow.\nCheck your email for your ticket QR code.`);
-                    
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(() => {
+                    const name = document.getElementById('fullName')?.value || "RIDER";
+                    alert(`🎉 AWESOME, ${String(name).toUpperCase()}!\n\nYou have successfully registered for The Scaters Raptor Roadshow.\nCheck your email for your ticket QR code.`);
+
                     const modalElement = document.getElementById('registerModal');
-                    const modal = bootstrap.Modal.getInstance(modalElement);
-                    modal.hide();
+                    const modal = modalElement ? bootstrap.Modal.getInstance(modalElement) : null;
+                    if (modal) modal.hide();
 
                     form.reset();
-                    submitBtn.innerText = originalBtnText;
+                    toggleSafetySection();
+                    toggleParentInfo();
+
+                    submitBtn.textContent = originalBtnText;
                     submitBtn.disabled = false;
                 })
-                .catch(error => {
-                    console.error('Error!', error.message);
+                .catch((error) => {
+                    console.error('Error!', error?.message || error);
                     alert('Error submitting registration. Please try again.');
-                    submitBtn.innerText = originalBtnText;
+                    submitBtn.textContent = originalBtnText;
                     submitBtn.disabled = false;
                 });
         }
+
+        // Expose handlers for inline HTML attributes
+        window.toggleSafetySection = toggleSafetySection;
+        window.toggleParentInfo = toggleParentInfo;
+        window.handleRegistrationSubmit = handleRegistrationSubmit;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initCountdown();
+            initScrollTracker();
+            onIdle(initCarouselThumbs);
+
+            // Ensure correct required flags on first load
+            toggleSafetySection();
+            toggleParentInfo();
+        });
     </script>
 </body>
 </html>
