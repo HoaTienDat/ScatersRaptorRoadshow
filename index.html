@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon"
-      href="https://res.cloudinary.com/dsohyqk0i/image/upload/f_auto,q_auto/v1768356645/favicon_s6bzdm.png"
+      href="https://res.cloudinary.com/dsohyqk0i/image/upload/f_auto,q_auto,w_900/v1768356645/favicon_s6bzdm.png"
       type="image/png"
       sizes="48x48">
     <link rel="icon"
-      href="https://res.cloudinary.com/dsohyqk0i/image/upload/f_auto,q_auto/v1768356645/favicon_s6bzdm.png"
+      href="https://res.cloudinary.com/dsohyqk0i/image/upload/f_auto,q_auto,w_900/v1768356645/favicon_s6bzdm.png"
       type="image/png"
       sizes="32x32">
     <link rel="icon"
-      href="https://res.cloudinary.com/dsohyqk0i/image/upload/f_auto,q_auto/v1768356645/favicon_s6bzdm.png"
+      href="https://res.cloudinary.com/dsohyqk0i/image/upload/f_auto,q_auto,w_900/v1768356645/favicon_s6bzdm.png"
       type="image/png"
       sizes="16x16">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,6 +50,7 @@
             --color-red-marker: #ff004c;
             
             --bg-dark-deep: #0a0a12;
+            --bg-photo: none;
             --bg-dark-mid: rgba(20, 20, 32, 0.6); 
             --bg-light-grey: rgba(240, 242, 245, 0.85); 
             
@@ -81,7 +82,7 @@
             background-image: 
                 url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.07'/%3E%3C/svg%3E"),
                 linear-gradient(rgba(10, 10, 18, 0.4), rgba(20, 20, 32, 0.6)),
-                url('https://res.cloudinary.com/dsohyqk0i/image/upload/f_auto,q_auto,w_1600,dpr_auto/v1765787702/Background_gm1cug.jpg');
+                var(--bg-photo);
             background-size: auto, auto, cover; 
             background-repeat: repeat, no-repeat, no-repeat;
             background-position: center center;
@@ -416,6 +417,8 @@
             .faq-model-col { display: none !important; }
         }
     </style>
+    <link rel="preload" as="image" href="https://res.cloudinary.com/dsohyqk0i/image/upload/f_auto,q_auto,w_900/v1768207323/Raptor_eqxqq7.png" fetchpriority="high">
+
 
 <script type="application/ld+json">
 {
@@ -1026,6 +1029,17 @@
         document.addEventListener('DOMContentLoaded', () => {
             if (window.AOS) {
                 AOS.init({ once: true, offset: 100, duration: 800, easing: 'ease-out-cubic' });
+
+        // Defer heavy background image to improve LCP/Speed Index (prevents early fetch).
+        const setBgPhoto = () => {
+            document.documentElement.style.setProperty('--bg-photo', "url('https://res.cloudinary.com/dsohyqk0i/image/upload/f_auto,q_auto,w_1600/v1765787702/Background_gm1cug.jpg')");
+        };
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(setBgPhoto, { timeout: 2000 });
+        } else {
+            window.addEventListener('load', setBgPhoto, { once: true });
+        }
+
             }
         });
 
