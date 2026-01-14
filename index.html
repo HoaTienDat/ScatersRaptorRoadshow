@@ -70,6 +70,21 @@ h1,h2,h3,h4,h5{font-family:'Teko',system-ui,sans-serif;text-transform:uppercase;
   .hero-title{font-size:13vw!important;line-height:1;text-align:center;margin-top:10px}
   .hero-floating-board{display:none!important}
   .hero-section{padding-top:120px;min-height:auto;padding-bottom:50px}
+
+  /* Mobile performance tuning */
+  #global-bg{
+    background-image:linear-gradient(rgba(10,10,18,.55),rgba(20,20,32,.78)),url('https://res.cloudinary.com/dsohyqk0i/image/upload/f_auto,q_30,w_900/v1765787702/Background_gm1cug.jpg');
+    background-size:auto,cover;
+    background-repeat:no-repeat,no-repeat;
+    background-position:center top,center top;
+  }
+  .navbar,.bg-dark-section,.bg-grey-contrast{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+  .hero-text-primary::before,.hero-text-primary::after,.hero-text-secondary::after{display:none!important}
+  .gradient-text,.hero-text-secondary{animation:none!important;filter:none!important}
+  .marquee-wrapper,.double-marquee-wrapper{display:none!important}
+  #raptor,#roadshow,#team,#about,#faq,#register,#previous-events,footer{content-visibility:auto;contain-intrinsic-size:1000px 800px}
+
+
 }</style>
 
 <style media="print" onload="this.media='all'">
@@ -1423,6 +1438,8 @@ h1,h2,h3,h4,h5{font-family:'Teko',system-ui,sans-serif;text-transform:uppercase;
         const initAOS = () => {
             if (window.AOS) AOS.init({ once: true, offset: 100, duration: 800, easing: 'ease-out-cubic' });
         };
+const isMobile=matchMedia('(max-width: 991px)').matches;
+
 
         window.addEventListener('load', () => { onIdle(initAOS); }, { once: true });
 
