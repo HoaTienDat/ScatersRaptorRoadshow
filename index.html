@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W3YG393WFG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-W3YG393WFG');
+    </script>
     <meta charset="UTF-8">
     <link rel="icon"
       href="https://res.cloudinary.com/dsohyqk0i/image/upload/f_auto,q_60,w_900/v1768356645/favicon_s6bzdm.png"
@@ -16,7 +25,7 @@
       sizes="16x16">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">    
-    <meta name="description" content="Scaters Presents: Raptor Roadshow 2026. The ultimate skateboarding event in the UK. Test ride the new Raptor, join the contest, & meet the pros.">
+    <meta name="description" content="Scaters Presents: The Raptor Roadshow 2026. The ultimate skateboarding event in the UK. Test ride the new Raptor, join the contest, & meet the pros.">
     <meta name="robots" content="index,follow">
     <meta name="theme-color" content="#0a0a12">
 
@@ -25,7 +34,7 @@
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="canonical" href="https://scaters.uk/" />
-    <title>Scaters | Raptor Roadshow 2026 - Official Event Site</title>
+    <title>Scaters | The Raptor Roadshow 2026 - Official Event Site</title>
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://scaters.uk/">
@@ -1604,6 +1613,13 @@ const isMobile=matchMedia('(max-width: 991px)').matches;
 
             fetch(scriptURL, { method: 'POST', body: new FormData(form) })
                 .then(() => {
+                    if (typeof gtag === 'function') {
+                      gtag('event', 'registration_submit', {
+                        event_category: 'conversion',
+                        event_label: 'Scaters Raptor Roadshow 2026',
+                        value: 1
+                      });
+                    }
                     const name = document.getElementById('fullName')?.value || "RIDER";
                     alert(`🎉 AWESOME, ${String(name).toUpperCase()}!\n\nYou have successfully registered for The Scaters Raptor Roadshow.\nCheck your email for your ticket QR code.`);
 
@@ -1643,4 +1659,3 @@ const isMobile=matchMedia('(max-width: 991px)').matches;
     </script>
 </body>
 </html>
-
